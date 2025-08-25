@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Menu, X, User, LogOut } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -41,11 +40,6 @@ export const Navigation = () => {
     { href: "/contact", label: "Contact" },
   ];
 
-  const handleWhatsApp = () => {
-    const message = "Hi! I'm interested in your solar solutions. Can you help me?";
-    const url = `https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
-  };
 
   return (
     <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-border">
@@ -87,16 +81,6 @@ export const Navigation = () => {
           {location.pathname !== '/impact' && (
             <div className="hidden md:flex items-center space-x-3">
               <CartDrawer />
-              <Button variant="outline" size="sm" asChild>
-                <Link to="/shop">Shop Solar</Link>
-              </Button>
-              <Button 
-                className="bg-green-500 hover:bg-green-600 text-white" 
-                size="sm"
-                onClick={handleWhatsApp}
-              >
-                WhatsApp Us
-              </Button>
               {user ? (
                 <div className="flex items-center space-x-2">
                   <div className="flex items-center space-x-2 text-sm">
@@ -205,21 +189,6 @@ export const Navigation = () => {
                )}
                <div className="flex flex-col space-y-2 pt-4">
                  <CartDrawer />
-                 {/* Hide Shop Solar and WhatsApp buttons on Impact page */}
-                 {location.pathname !== '/impact' && (
-                   <>
-                     <Button variant="outline" size="sm" asChild>
-                       <Link to="/shop">Shop Solar</Link>
-                     </Button>
-                     <Button 
-                       className="bg-green-500 hover:bg-green-600 text-white" 
-                       size="sm"
-                       onClick={handleWhatsApp}
-                     >
-                       WhatsApp Us
-                     </Button>
-                   </>
-                 )}
                  {user ? (
                    <div className="flex flex-col space-y-2">
                      <div className="text-sm text-muted-foreground">
