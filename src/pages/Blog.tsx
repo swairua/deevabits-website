@@ -99,7 +99,7 @@ const Blog = () => {
         <Navigation />
         
         {/* Hero Section */}
-        <section className="relative py-32 min-h-[50vh] flex items-center justify-center overflow-hidden">
+        <section className="relative pt-32 pb-32 min-h-[50vh] flex items-center justify-center overflow-hidden">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat backdrop-blur-[0.5px]"
             style={{
