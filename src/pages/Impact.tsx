@@ -1,4 +1,3 @@
-
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { StickyWhatsApp } from "@/components/StickyWhatsApp";
@@ -25,7 +24,7 @@ const Impact = () => {
         <Navigation />
         
         {/* Hero Section */}
-        <section className="relative py-32 min-h-[80vh] flex items-center justify-center overflow-hidden">
+        <section className="relative pt-40 pb-32 min-h-[80vh] flex items-center justify-center overflow-hidden">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{

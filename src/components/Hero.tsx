@@ -1,11 +1,24 @@
-
 import { Button } from "@/components/ui/button";
 import { MessageCircle, ShoppingCart, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { siteConfig } from "@/config/site";
-import heroImage from "@/assets/hero-home.jpg";
+import heroImage1 from "@/assets/hero-home.jpg";
+import heroImage2 from "@/assets/hero-solar-empowerment.jpg";
+import heroImage3 from "@/assets/hero-impact.jpg";
 
 export const Hero = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const images = [heroImage1, heroImage2, heroImage3];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [images.length]);
+
   const handleWhatsApp = () => {
     const message = "Hi! I'm interested in your solar solutions. Can you help me?";
     const url = `https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(message)}`;
@@ -13,16 +26,36 @@ export const Hero = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Background Image with Backdrop */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat backdrop-blur-[0.5px]"
-        style={{
-          backgroundImage: `url(${heroImage})`
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/50"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/30"></div>
+    <section id="home" className="min-h-screen pt-20 flex items-center justify-center relative overflow-hidden">
+      {/* Background Image Slider */}
+      <div className="absolute inset-0">
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 bg-cover bg-center bg-no-repeat backdrop-blur-[0.5px] transition-opacity duration-1000 ${
+              index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{
+              backgroundImage: `url(${image})`
+            }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/50"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/30"></div>
+          </div>
+        ))}
+      </div>
+
+      {/* Slider Indicators */}
+      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentImageIndex ? 'bg-white' : 'bg-white/50'
+            }`}
+            onClick={() => setCurrentImageIndex(index)}
+          />
+        ))}
       </div>
       
       {/* Content */}
