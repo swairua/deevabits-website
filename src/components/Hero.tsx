@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { MessageCircle, ShoppingCart, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -13,7 +12,7 @@ export const Hero = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="min-h-screen pt-20 flex items-center justify-center relative overflow-hidden">
       {/* Background Image with Backdrop */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat backdrop-blur-[0.5px]"
